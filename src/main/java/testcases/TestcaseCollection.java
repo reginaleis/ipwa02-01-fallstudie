@@ -1,4 +1,4 @@
-package beans;
+package testcases;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -1,4 +1,4 @@
-package beans;
+package requirements;
 import java.util.List;
 
 import jakarta.enterprise.context.RequestScoped;

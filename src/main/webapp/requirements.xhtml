@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+  <link rel="stylesheet" href="css/style.css"/>
+  <title>Requirements</title>
+</h:head>
+
+<body>
+    
+    <div class="page">
+        <div class="panel-header">
+            <h1>Requirements Overview</h1>
+        </div>
+    
+        <div class="panel">
+            
+            <h:dataTable class="data-table" var="requirement" value="#{requirementCollection.requirements}" >
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                    <h:outputText value="#{requirement.id}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Content</f:facet>
+                    <h:outputText value="#{requirement.content}" />
+                </h:column>
+                <h:column>
+                <f:facet name="header">Author</f:facet>
+                <h:outputText value="#{requirement.author}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Status</f:facet>
+                <h:outputText value="#{requirement.status}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Type</f:facet>
+                <h:outputText value="#{requirement.type}" />
+            </h:column>
+        </h:dataTable>
+    
+    </div>
+</div>
+</body>
+</html>

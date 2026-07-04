@@ -1,4 +1,4 @@
-package beans;
+package requirements;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -1,4 +1,4 @@
-package beans;
+package testcases;
 import java.util.List;
 
 import jakarta.enterprise.context.RequestScoped;
