@@ -15,16 +15,14 @@ public class Requirement
     private String status;
     private String type;
 
-    public Requirement(int id, String author, String content, List<String> linked_testcases, String status, String type)
+    public Requirement(int id, String author, String content, List<String> linkedTestcases, String status, String type)
     {
         this.id = (long) id;
         this.author = author;
         this.content = content;
-        this.linked_testcases = linked_testcases;
+        this.linkedTestcases = linkedTestcases;
         this.status = status;
         this.type = type;
-    }
-    {
     }
 
     public Long getId()
@@ -57,14 +55,14 @@ public class Requirement
         this.content = content;
     }
 
-    public List<String> getLinked_testcases()
+    public List<String> getLinkedTestcases()
     {
-        return linked_testcases;
+        return linkedTestcases;
     }
 
-    public void setLinked_testcases(List<String> linked_testcases)
+    public void setLinkedTestcases(List<String> linkedTestcases)
     {
-        this.linked_testcases = linked_testcases;
+        this.linkedTestcases = linkedTestcases;
     }
 
     public String getStatus()
