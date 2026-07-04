@@ -3,63 +3,77 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-  <link rel="stylesheet" type="text/css" media="screen" href="style.css"/>
+  <link rel="stylesheet" href="style.css"/>
   <title>Requirements4Testing</title>
 </h:head>
+<body>
 
-<h1>Requirements Overview</h1>
+<div class="page">
 
-<h:dataTable var="requirement" value="#{requirementCollection.requirements}" >
-  <h:column>
-    <f:facet name="header">ID</f:facet>
-    <h:outputText value="#{requirement.id}" />
-  </h:column>
-  <h:column>
-    <f:facet name="header">Content</f:facet>
-    <h:outputText value="#{requirement.content}" />
-  </h:column>
-  <h:column>
-    <f:facet name="header">Author</f:facet>
-    <h:outputText value="#{requirement.author}" />
-  </h:column>
-  <h:column>
-    <f:facet name="header">Status</f:facet>
-    <h:outputText value="#{requirement.status}" />
-  </h:column>
-  <h:column>
-    <f:facet name="header">Type</f:facet>
-    <h:outputText value="#{requirement.type}" />
-  </h:column>
-</h:dataTable>
+  <div class="panel-header">
+  <h1>Requirements Overview</h1>
+  </div>
 
+  <div class="panel">
+  
+  <h:dataTable class="data-table" var="requirement" value="#{requirementCollection.requirements}" >
+    <h:column>
+      <f:facet name="header">ID</f:facet>
+      <h:outputText value="#{requirement.id}" />
+    </h:column>
+    <h:column>
+      <f:facet name="header">Content</f:facet>
+      <h:outputText value="#{requirement.content}" />
+    </h:column>
+    <h:column>
+      <f:facet name="header">Author</f:facet>
+      <h:outputText value="#{requirement.author}" />
+    </h:column>
+    <h:column>
+      <f:facet name="header">Status</f:facet>
+      <h:outputText value="#{requirement.status}" />
+    </h:column>
+    <h:column>
+      <f:facet name="header">Type</f:facet>
+      <h:outputText value="#{requirement.type}" />
+    </h:column>
+  </h:dataTable>
 
-<h1>Testcase Overview</h1>
+  </div>
 
-<h:dataTable var="testcase" value="#{testcaseCollection.testcases}" >
-  <h:column>
-    <f:facet name="header">ID</f:facet>
-    <h:outputText value="#{testcase.id}" />
-  </h:column>
-  <h:column>
-    <f:facet name="header">Description</f:facet>
-    <h:outputText value="#{testcase.description}" />
-  </h:column>
-  <h:column>
-    <f:facet name="header">Tester</f:facet>
-    <h:outputText value="#{testcase.tester}" />
-  </h:column>
-  <h:column>
-    <f:facet name="header">Teststeps</f:facet>
-    <h:outputText value="#{testcase.testSteps}" />
-  </h:column>
-  <h:column>
-    <f:facet name="header">expectedResult</f:facet>
-    <h:outputText value="#{testcase.expectedResult}" />
-  </h:column>
-  <h:column>
-    <f:facet name="header">testedRequirements</f:facet>
-    <h:outputText value="#{testcase.testedRequirements}" />
-  </h:column>
-</h:dataTable>
+  <div class="panel-header">
+  <h1>Testcase Overview</h1>
+  </div>
 
+  <div class="panel">
+    <h:dataTable class="data-table" var="testcase" value="#{testcaseCollection.testcases}" >
+      <h:column>
+        <f:facet name="header">ID</f:facet>
+        <h:outputText value="#{testcase.id}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header">Description</f:facet>
+        <h:outputText value="#{testcase.description}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header">Tester</f:facet>
+        <h:outputText value="#{testcase.tester}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header">Teststeps</f:facet>
+        <h:outputText value="#{testcase.testSteps}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header">expected result</f:facet>
+        <h:outputText value="#{testcase.expectedResult}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header">tested requirements</f:facet>
+        <h:outputText value="#{testcase.testedRequirements}" />
+      </h:column>
+    </h:dataTable>
+
+  </div>
+</div>
+</body>
 </html>
