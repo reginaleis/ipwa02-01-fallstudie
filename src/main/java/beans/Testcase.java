@@ -13,11 +13,11 @@ public class Testcase {
     private String tester;
     private String description;
     private List<String> testSteps;
-    private String expectedResult;
+    private List<String> expectedResult;
     private String lastTestResult;
     private List<String> testedRequirements;
 
-    public Testcase(int id, String tester, String description, List<String> testSteps, String expectedResult, String lastTestResult)
+    public Testcase(int id, String tester, String description, List<String> testSteps, List<String> expectedResult, String lastTestResult)
     {
         this.id = (long) id;
         this.tester = tester;
@@ -68,12 +68,12 @@ public class Testcase {
         this.testSteps = testSteps;
     }
 
-    public String getExpectedResult()
+    public List<String> getExpectedResult()
     {
         return expectedResult;
     }
 
-    public void setExpectedResult(String expectedResult)
+    public void setExpectedResult(List<String> expectedResult)
     {
         this.expectedResult = expectedResult;
     }
