@@ -1,13 +1,17 @@
 package requirements;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 
 @Named
 @RequestScoped
+@Entity
 public class Requirement
-{
+{   
+    @Id
     private Long id;
     private String author;
     private String content;
