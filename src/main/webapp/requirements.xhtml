@@ -54,9 +54,11 @@
                 </h:column>    
                 <h:column>
                     <f:facet name="header">Linked Testcases</f:facet>
-                    <h:outputText value="#{requirement.linkedTestcases}" />
+                    <h:selectManyListbox value = "#{requirement.linkedTestcases}"> 
+                        <f:selectItem itemValue = "testcase1" itemLabel = "testcase1" /> 
+                        <f:selectItem itemValue = "testcase2" itemLabel = "testcase2" /> 
+                    </h:selectManyListbox>             
                 </h:column>           
-
                 <h:column>
                     <f:facet name="header">Actions</f:facet>
                     <h:commandLink onclick="alert('This button is still in the making!');">
