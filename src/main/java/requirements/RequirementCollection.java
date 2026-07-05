@@ -10,19 +10,17 @@ import jakarta.inject.Named;
 @ApplicationScoped
 public class RequirementCollection
 {
-    private final List<Requirement> requirements = new ArrayList<>();
+    private RequirementDAO dao = new RequirementDAO();
+    private final List<Requirement> requirements;
 
-    public RequirementCollection()
-    {
-        requirements.add(new Requirement(1, "Autor 1", "Inhalt 1", new ArrayList<>(), "Draft", "Functional"));
-        requirements.add(new Requirement(2, "Autor 2", "Inhalt 2", new ArrayList<>(), "Approved", "Non-Functional"));
-        requirements.add(new Requirement(3, "Autor 2", "Inhalt 3", new ArrayList<>(), "Draft", "Functional"));
-        requirements.add(new Requirement(4, "Autor 1", "Inhalt 4", new ArrayList<>(), "Approved", "Non-Functional"));
-
+    @PostContruct
+    public void init() {
+        requirements = dao.getAll();
     }
 
-    public List<Requirement> getRequirements()
-    {
-        return requirements;
+    public void removeRequirement(Requirement r) {
+        dao.delete(r.getId());
+        requirements = dao.getAll();
     }
+
 }

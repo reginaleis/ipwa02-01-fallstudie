@@ -1,22 +1,29 @@
 package requirements;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+import java.io.Serializable;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 
 @Named
 @RequestScoped
 @Entity
-public class Requirement
+@Table(name="Requirements")
+public class Requirement implements Serializable
 {   
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto-increment
     private Long id;
+
     private String author;
+
     private String content;
+
     private List<String> linkedTestcases;
+
     private String status;
+    
     private String type;
 
     public Requirement(int id, String author, String content, List<String> linkedTestcases, String status, String type)
