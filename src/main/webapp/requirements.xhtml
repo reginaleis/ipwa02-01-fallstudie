@@ -23,15 +23,29 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Content</f:facet>
-                    <h:outputText value="#{requirement.content}" />
+                    <p:inplace id="content">
+                        <f:facet name="output">
+                            Content
+                            <h:outputText value="#{requirement.content}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:inputText  id="content" value="#{requirement.content}" size="40"/>
+                        </f:facet>
+                    </p:inplace>
                 </h:column>
                 <h:column>
                 <f:facet name="header">Author</f:facet>
-                <h:outputText value="#{requirement.author}" />
+                <p:inplace label="#{requirement.author}">
+                    <h:inputText  id="author" value="#{requirement.author}" size="40"/>
+                </p:inplace>
             </h:column>
             <h:column>
                 <f:facet name="header">Status</f:facet>
                 <h:outputText value="#{requirement.status}" />
+                <h:selectOneMenu>
+                    <f:selectItem itemLabel="Draft" itemValue="Draft" />
+                    <f:selectItem itemLabel="In Review" itemValue="In Review" />
+                </h:selectOneMenu>      
             </h:column>
             <h:column>
                 <f:facet name="header">Type</f:facet>
@@ -48,22 +62,8 @@
             </h:column>
         </h:dataTable>
 
-        <h:form>
-            <h:panelGrid columns="2">
-            <h:commandLink value="zurück" action="#{requirementController.next()}" />
-            <h:commandLink value="vor" action="#{requirementController.previous()}" />
-            <h:outputLabel value="ID:" for="id" />
-            <h:outputText id="id" value="#{requirementController.requirement.id}" />
-            <h:outputLabel value="Author:" for="author" />
-            <h:inputText  id="author" value="#{requirementController.requirement.author}" size="40"/>
-            <h:outputLabel value="Content:" for="content" />
-            <h:inputText id="content" value="#{requirementController.requirement.content}"  size="40"/>
-            </h:panelGrid>
-        </h:form>
-    
     </div>
-   
-            
+
 
 </div>
 </body>
