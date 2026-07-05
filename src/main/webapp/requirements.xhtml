@@ -17,7 +17,9 @@
         </div>
     
         <div class="panel">
-            
+            <h:commandLink onclick="alert('This button is still in the making!');" >
+                <img src="images/square-plus.svg"/>
+            </h:commandLink>
             <h:dataTable class="data-table" var="requirement" value="#{requirementCollection.requirements}" >
                 <h:column>
                     <f:facet name="header">ID</f:facet>
@@ -25,48 +27,47 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Content</f:facet>
-                    <p:inplace id="content">
-                        <f:facet name="output">
-                            Content
-                            <h:outputText value="#{requirement.content}" />
-                        </f:facet>
-                        <f:facet name="input">
-                            <h:inputText  id="content" value="#{requirement.content}" size="40"/>
-                        </f:facet>
+                    <p:inplace label="#{requirement.content}">
+                        <h:inputText  id="content" value="#{requirement.content}" size="20"/>
                     </p:inplace>
                 </h:column>
                 <h:column>
-                <f:facet name="header">Author</f:facet>
-                <p:inplace label="#{requirement.author}">
-                    <h:inputText  id="author" value="#{requirement.author}" size="40"/>
-                </p:inplace>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Status</f:facet>
-                <h:outputText value="#{requirement.status}" />
-                <h:selectOneMenu>
-                    <f:selectItem itemLabel="Draft" itemValue="Draft" />
-                    <f:selectItem itemLabel="In Review" itemValue="In Review" />
-                </h:selectOneMenu>      
-            </h:column>
-            <h:column>
-                <f:facet name="header">Type</f:facet>
-                <h:outputText value="#{requirement.type}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">Actions</f:facet>
-                <h:commandLink action="{requirementCollection.requirements.remove(requirement)}" onclick="alert('Hello World!');">
-                    <img style="padding-left: 20px" src="images/pencil-line.svg"/>
-                </h:commandLink>
-                <h:commandLink action="{requirementCollection.requirements.remove(requirement)}" >
-                    <img style="padding-left: 20px" src="images/trash.svg"/>
-                </h:commandLink>
-            </h:column>
-        </h:dataTable>
+                    <f:facet name="header">Author</f:facet>
+                    <p:inplace label="#{requirement.author}">
+                        <h:inputText  id="author" value="#{requirement.author}" size="20"/>
+                    </p:inplace>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Status</f:facet>
+                    <h:selectOneMenu>
+                        <f:selectItem itemLabel="Draft" itemValue="Draft" />
+                        <f:selectItem itemLabel="In Review" itemValue="In Review" />
+                        <f:selectItem itemLabel="Approved" itemValue="Approved" />
+                    </h:selectOneMenu>      
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Type</f:facet>
+                    <h:selectOneMenu>
+                        <f:selectItem itemLabel="Functional" itemValue="Functional" />
+                        <f:selectItem itemLabel="Non-Functional" itemValue="Non-Functional" />
+                    </h:selectOneMenu>  
+                </h:column>    
+                <h:column>
+                    <f:facet name="header">Linked Testcases</f:facet>
+                    <h:outputText value="#{requirement.linkedTestcases}" />
+                </h:column>           
 
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:commandLink onclick="alert('This button is still in the making!');">
+                        <img src="images/pencil-line.svg"/>
+                    </h:commandLink>
+                    <h:commandLink action="{requirementCollection.requirements.remove(requirement)}" >
+                        <img src="images/trash.svg"/>
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable>
+        </div>
     </div>
-
-
-</div>
 </body>
 </html>
