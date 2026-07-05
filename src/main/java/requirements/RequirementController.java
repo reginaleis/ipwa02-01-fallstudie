@@ -5,6 +5,8 @@ import java.io.Serializable;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import requirements.Requirement;
+import requirements.RequirementCollection;
 
 @Named
 @ViewScoped
@@ -14,6 +16,16 @@ public class RequirementController implements Serializable{
     RequirementCollection requirementCollection;
 
     private int index = 0;
+
+    public int getIndex()
+    {
+        return index;
+    }
+
+    public void setIndex(int id)
+    {
+        this.index = id -1; 
+    }
 
     public Requirement getRequirement()
     {
@@ -33,10 +45,7 @@ public class RequirementController implements Serializable{
         }
     }
     
-    public int getIndex()
-    {
-        return index;
-    }
+
 
     public int getMaxIndex()
     {
