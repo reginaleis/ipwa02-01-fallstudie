@@ -125,6 +125,49 @@ p { margin: 0 0 var(--space-3); color: var(--text-secondary); }
   flex-wrap: wrap;
 }
 
+.right-header {
+    color: #fff;
+    float: right;
+    align-items: right;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 1px 3px var(--shadow-md);
+}
+
+.navbar ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0.75rem 1rem;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.navbar ul li a:hover {
+    background-color: var(--accent-tint);
+}
+
+.navbar ul li a.active {
+    background-color: var(--accent);
+    color: #ffffff;
+    font-weight: 600;
+}
+
 /* --------------------------------------------------------------------------
    4. Links
    -------------------------------------------------------------------------- */
@@ -430,3 +473,4 @@ table.data-table {
 
 .mt-0 { margin-top: 0; }
 .mb-0 { margin-bottom: 0; }
+

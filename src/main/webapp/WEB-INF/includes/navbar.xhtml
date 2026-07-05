@@ -1,0 +1,27 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <nav class="navbar">
+        <ul>
+            <li>
+                <a href="index.xhtml"
+                   class="#{navigationBean.active('index.xhtml') ? 'active' : ''}">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="requirements.xhtml"
+                   class="#{navigationBean.active('requirements.xhtml') ? 'active' : ''}">
+                    Requirements
+                </a>
+            </li>
+            <li>
+                <a href="testcases.xhtml"
+                   class="#{navigationBean.active('testcases.xhtml') ? 'active' : ''}">
+                    Tests
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</ui:composition>
