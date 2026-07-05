@@ -1,15 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
   <link rel="stylesheet" href="css/style.css"/>
   <title>Requirements</title>
 </h:head>
 
 <body>
-    
     <div class="page">
         <div class="panel-header">
             <h1>Requirements Overview</h1>
@@ -38,9 +37,34 @@
                 <f:facet name="header">Type</f:facet>
                 <h:outputText value="#{requirement.type}" />
             </h:column>
+            <h:column>
+                <f:facet name="header">Actions</f:facet>
+                <h:commandLink action="{requirementCollection.requirements.remove(requirement)}" onclick="alert('Hello World!');">
+                    <img style="padding-left: 20px" src="images/pencil-line.svg"/>
+                </h:commandLink>
+                <h:commandLink action="{requirementCollection.requirements.remove(requirement)}" >
+                    <img style="padding-left: 20px" src="images/trash.svg"/>
+                </h:commandLink>
+            </h:column>
         </h:dataTable>
+
+        <h:form>
+            <h:panelGrid columns="2">
+            <h:commandLink value="zurück" action="#{requirementController.next()}" />
+            <h:commandLink value="vor" action="#{requirementController.previous()}" />
+            <h:outputLabel value="ID:" for="id" />
+            <h:outputText id="id" value="#{requirementController.requirement.id}" />
+            <h:outputLabel value="Author:" for="author" />
+            <h:inputText  id="author" value="#{requirementController.requirement.author}" size="40"/>
+            <h:outputLabel value="Content:" for="content" />
+            <h:inputText id="content" value="#{requirementController.requirement.content}"  size="40"/>
+            </h:panelGrid>
+        </h:form>
     
     </div>
+   
+            
+
 </div>
 </body>
 </html>

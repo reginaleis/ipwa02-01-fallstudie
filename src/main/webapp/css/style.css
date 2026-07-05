@@ -310,7 +310,7 @@ table.data-table {
 
 .data-table tbody td {
   padding: var(--space-3) var(--space-4);
-  text-align: left;
+  text-align: center;
   color: var(--text-primary);
   border-bottom: 1px solid var(--color-border);
   vertical-align: middle;

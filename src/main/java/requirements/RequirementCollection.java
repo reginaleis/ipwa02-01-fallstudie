@@ -1,7 +1,7 @@
 package requirements;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
@@ -10,7 +10,7 @@ import jakarta.inject.Named;
 @ApplicationScoped
 public class RequirementCollection
 {
-    private final Collection<Requirement> requirements = new ArrayList<>();
+    private final List<Requirement> requirements = new ArrayList<>();
 
     /**
      * Creates a new instance of RequirementOverview
@@ -21,7 +21,7 @@ public class RequirementCollection
         requirements.add(new Requirement(2, "Autor 2", "Inhalt 2", new ArrayList<>(), "Approved", "Non-Functional"));
     }
 
-    public Collection<Requirement> getRequirements()
+    public List<Requirement> getRequirements()
     {
         return requirements;
     }
