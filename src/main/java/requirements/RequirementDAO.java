@@ -1,39 +1,118 @@
 package requirements;
 
-import jakarta.persistence.*;
 import java.util.List;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Named;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
+
+@Named
+@ApplicationScoped
 public class RequirementDAO {
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("RequirementPU");
+    EntityManagerFactory entityManagerFactory;
+
+    @PostConstruct
+    void init() {
+        entityManagerFactory = Persistence.createEntityManagerFactory("require4testing");
+    }
 
     public List<Requirement> getAll() {
-        EntityManager em = emf.createEntityManager();
-        List<Requirement> list = em.createQuery("SELECT r FROM Requirements r", Requirement.class).getResultList();
-        em.close();
-        return list;
+        EntityManager em = entityManagerFactory.createEntityManager();
+        try {
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Requirement> cq = cb.createQuery(Requirement.class);
+            Root<Requirement> root = cq.from(Requirement.class);
+            cq.select(root).orderBy(cb.asc(root.get("id")));
+            return em.createQuery(cq).getResultList();
+        } finally {
+            em.close();
+    }
     }
 
-    public Requirement getById(Long id) {
-        EntityManager em = emf.createEntityManager();
-        Requirement r = em.find(Requirement.class, id);
-        em.close();
-        return r;
+    public long getRequirementsCount() {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        try {
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+            cq.select(cb.count(cq.from(Requirement.class)));
+            return em.createQuery(cq).getSingleResult();
+        } finally {
+            em.close();
+    }}
+
+    public Requirement getRequirementAtIndex(int pos) {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        try {
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Requirement> cq = cb.createQuery(Requirement.class);
+            Root<Requirement> root = cq.from(Requirement.class);
+            cq.select(root).orderBy(cb.asc(root.get("id")));
+            return em.createQuery(cq)
+                .setFirstResult(pos)
+                .setMaxResults(1)
+                .getSingleResult();
+        } finally {
+            em.close();
+    }}
+
+    public EntityTransaction getAndBeginTransaction() {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        try {
+            EntityTransaction tran = em.getTransaction();
+            tran.begin();
+            return tran;
+        } finally {
+            em.close();
+        }
     }
 
-    public void save(Requirement r) {
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        if (r.getId() == null) em.persist(r); else em.merge(r);
-        em.getTransaction().commit();
-        em.close();
+    public void merge(Requirement req) {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.merge(req);
+            tx.commit();
+        } catch (RuntimeException e) {
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+            throw e;
+        } finally {
+            em.close();
+        }
+    }
+    public void persist(Requirement req) {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.persist(req);
+            tx.commit();
+        } catch (RuntimeException e) {
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+            throw e;
+        } finally {
+            em.close();
+        }
     }
 
-    public void delete(Long id) {
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        Requirement r = em.find(Requirement.class, id);
-        if (r != null) em.remove(r);
-        em.getTransaction().commit();
-        em.close();
+    public void removeRequirement(Requirement req) {
+        // TODO: use createCriteriaDelete
     }
+
+    public static void main(String[] args) {
+        RequirementDAO dao = new RequirementDAO();
+        System.err.println("Wir haben " + dao.getRequirementsCount() + " Requirements.");
+    }
+
 }
