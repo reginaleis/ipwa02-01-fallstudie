@@ -55,13 +55,6 @@
                         <f:selectItem itemLabel="Non-Functional" itemValue="Non-Functional" />
                     </h:selectOneMenu>  
                     <h:outputText value=""/>
-
-                    <h:outputLabel value="Linked Testcases:" for="linkedTestcases"/>
-                    <h:selectManyListbox value = "#{requirementController.requirement.linkedTestcases}"> 
-                        <f:selectItem itemValue = "testcase1" itemLabel = "testcase1" /> 
-                        <f:selectItem itemValue = "testcase2" itemLabel = "testcase2" /> 
-                    </h:selectManyListbox>  
-                    <h:outputText value=""/>     
                 </h:panelGrid>
                 <h:button value="CANCEL" outcome="/requirements.xhtml" />
                 <h:commandButton value = "SAVE" onclick = "alert('This is still in the making!');" /> 

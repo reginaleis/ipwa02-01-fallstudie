@@ -17,46 +17,30 @@
         </div>
     
         <div class="panel">
-            <h:button value="Add new Requirement" outcome="/editRequirement.xhtml" />
+            <h:button value="Add new Requirement" outcome="/editRequirement.xhtml" >
+                <!-- <f:param name="index" value="#{requirement.id}" /> -->
+            </h:button>
             <h:dataTable class="data-table" var="requirement" value="#{requirementCollection.requirements}" >
-                <h:column>
-                    <f:facet name="header">ID</f:facet>
-                    <h:outputText value="#{requirement.id}" />
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Content</f:facet>
-                    <h:outputText value="#{requirement.content}" />
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Author</f:facet>
-                    <h:outputText value="#{requirement.author}" />
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Status</f:facet>
-                    <h:outputText value="#{requirement.status}" />
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Type</f:facet>
-                    <h:outputText value="#{requirement.type}" />
-                </h:column>    
-                <h:column>
-                    <f:facet name="header">Linked Testcases</f:facet>
-                    <h:outputText value="#{requirement.linkedTestcases}" />
-                </h:column>           
-                <h:column>
-                    <f:facet name="header">Actions</f:facet>
-                    <h:button value="EDIT" outcome="/editRequirement.xhtml">
-                        <f:param name="index" value="#{requirement.id}" />
-                    </h:button>
-                    <!-- <h:commandButton value = "EDIT" action = "editRequirement?faces-redirect = true" />  -->
-                    <h:commandButton value = "REMOVE" onclick = "alert('This is still in the making!');" />
-                    <!-- <h:commandLink action="editRequirement">
-                        <img src="images/pencil-line.svg"/>
-                    </h:commandLink>
-                    <h:commandLink action="{requirementCollection.requirements.remove(requirement)}" >
-                        <img src="images/trash.svg"/>
-                    </h:commandLink> -->
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                        <h:outputText value="#{requirement.id}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Content</f:facet>
+                        <h:outputText value="#{requirement.content}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Author</f:facet>
+                        <h:outputText value="#{requirement.author}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Status</f:facet>
+                        <h:outputText value="#{requirement.status}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Type</f:facet>
+                        <h:outputText value="#{requirement.type}" />
+                    </h:column>    
             </h:dataTable>
         </div>
     </div>

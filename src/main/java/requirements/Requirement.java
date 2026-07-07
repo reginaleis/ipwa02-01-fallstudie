@@ -1,13 +1,12 @@
 package requirements;
-import java.util.List;
-import javax.persistence.*;
-
 import java.io.Serializable;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Named;
 
-@Named
-@RequestScoped
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 @Entity
 @Table(name="Requirements")
 public class Requirement implements Serializable
@@ -20,18 +19,22 @@ public class Requirement implements Serializable
 
     private String content;
 
-    private List<String> linkedTestcases;
+    // private List<String> linkedTestcases;
 
     private String status;
     
     private String type;
 
-    public Requirement(int id, String author, String content, List<String> linkedTestcases, String status, String type)
+    public Requirement() {
+
+    }
+
+    public Requirement(int id, String author, String content, String status, String type)
     {
         this.id = (long) id;
         this.author = author;
         this.content = content;
-        this.linkedTestcases = linkedTestcases;
+        // this.linkedTestcases = linkedTestcases;
         this.status = status;
         this.type = type;
     }
@@ -61,15 +64,15 @@ public class Requirement implements Serializable
         this.content = content;
     }
 
-    public List<String> getLinkedTestcases()
-    {
-        return linkedTestcases;
-    }
+    // public List<String> getLinkedTestcases()
+    // {
+    //     return linkedTestcases;
+    // }
 
-    public void setLinkedTestcases(List<String> linkedTestcases)
-    {
-        this.linkedTestcases = linkedTestcases;
-    }
+    // public void setLinkedTestcases(List<String> linkedTestcases)
+    // {
+    //     this.linkedTestcases = linkedTestcases;
+    // }
 
     public String getStatus()
     {
