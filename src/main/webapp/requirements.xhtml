@@ -17,6 +17,8 @@
         </div>
     
         <div class="panel">
+
+            <h:button value="Add new Requirement" outcome="/addRequirement.xhtml" />
             <h:dataTable class="data-table" var="requirement" value="#{requirementController.getAllRequirements()}" >
                     <h:column>
                         <f:facet name="header">ID</f:facet>

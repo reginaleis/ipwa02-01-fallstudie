@@ -28,15 +28,26 @@ public class RequirementController implements Serializable{
         this.index = id; 
     }
 
-
+    
     public int getMaxIndex()
     {
-        return (int) dao.getRequirementsCount();
+        return (int) dao.getRequirementsCount() -1 ;
+    }
+    
+    public void setNextIndex() {
+        if (requirement == null) {
+            this.index = (int) dao.getNextRequirementId();
+            this.requirement = new Requirement();
+            this.requirement.setId((long) this.index);
+        }
     }
 
     public Requirement getRequirement()
     {
-        return requirement = dao.getRequirementAtIndex(index);
+        if (requirement == null) {
+            requirement = dao.getRequirementAtIndex(index);
+        }
+        return requirement;
     }
 
     public String saveCurrent() {
@@ -57,6 +68,7 @@ public class RequirementController implements Serializable{
         if (index > 0) {
             index++;
         }
+        requirement = null;
     }
 
     public void previous() {
@@ -67,8 +79,19 @@ public class RequirementController implements Serializable{
         if (index > 0) {
             index--;
         }        
+        requirement = null;
     }
 
+    public String addRequirement() {
+        if (requirement == null) {
+            requirement = new Requirement();
+        }
+        if (requirement.getId() == null) {
+            requirement.setId((long) index);
+        }
+        dao.addRequirement(requirement);
+        return "requirements";
+    }
 
     public void removeRequirement() {
         if(dao.getRequirementsCount()>0)

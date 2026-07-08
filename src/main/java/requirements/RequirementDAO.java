@@ -40,6 +40,16 @@ public class RequirementDAO {
         return em.createQuery(cq).getSingleResult();
        }
 
+    public long getNextRequirementId() {
+        long nextId = 1L;
+        for (Requirement requirement : getAll()) {
+            if (requirement.getId() != null && requirement.getId() >= nextId) {
+                nextId = requirement.getId() + 1;
+            }
+        }
+        return nextId;
+    }
+
     public Requirement getRequirementAtIndex(int pos) {
         
         CriteriaQuery<Requirement> cq = cb.createQuery(Requirement.class);
@@ -73,6 +83,20 @@ public class RequirementDAO {
 
 
     public void persist(Requirement req) {
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.persist(req);
+            tx.commit();
+        } catch (RuntimeException e) {
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+            throw e;
+        }
+    }
+
+    public void addRequirement(Requirement req) {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();

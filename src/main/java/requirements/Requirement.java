@@ -2,8 +2,6 @@ package requirements;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -12,7 +10,6 @@ import jakarta.persistence.Table;
 public class Requirement implements Serializable
 {   
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto-increment
     private Long id;
 
     private String author;
@@ -42,6 +39,11 @@ public class Requirement implements Serializable
     public Long getId()
     {
         return id;
+    }
+
+    public void setId(Long id)
+    {
+        this.id = id;
     }
 
     public String getAuthor()
