@@ -42,7 +42,7 @@
                     <h:outputText value=""/>
 
                     <h:outputLabel value="Status:" for="status"/>
-                    <h:selectOneMenu>
+                    <h:selectOneMenu value = "#{requirementController.requirement.status}">
                         <f:selectItem itemLabel="Draft" itemValue="Draft" />
                         <f:selectItem itemLabel="In Review" itemValue="In Review" />
                         <f:selectItem itemLabel="Approved" itemValue="Approved" />
