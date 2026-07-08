@@ -1,10 +1,12 @@
 package requirements;
 
 import java.io.Serializable;
+import java.util.List;
 
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.persistence.EntityTransaction;
 
 @Named
 @ViewScoped
@@ -12,9 +14,6 @@ public class RequirementController implements Serializable{
 
     @Inject
     private RequirementDAO dao ;
-
-    @Inject
-    private RequirementCollection requirementCollection;
 
     private int index = 0;
     Requirement requirement;
@@ -31,10 +30,7 @@ public class RequirementController implements Serializable{
 
     public Requirement getRequirement()
     {
-        if (requirement == null && !requirementCollection.getRequirements().isEmpty()) {
-            requirement = requirementCollection.getRequirements().get(index);
-        }
-        return requirement;
+        return requirement = dao.getRequirementAtIndex(index);
     }
 
     public void saveCurrent() {
@@ -43,23 +39,27 @@ public class RequirementController implements Serializable{
             return;
         }
         dao.merge(current);
-        requirementCollection.refresh();
+        dao.getAll();
     }
  
     public void next() {
-        saveCurrent();
-        if (index < requirementCollection.getRequirements().size() - 1) {
+        System.err.println("Saving Requirement " + requirement.getId());
+        EntityTransaction t = dao.getAndBeginTransaction();
+        dao.merge(requirement);
+        t.commit();
+        if (index > 0) {
             index++;
-            requirement = requirementCollection.getRequirements().get(index);
         }
     }
 
     public void previous() {
-        saveCurrent();
+        System.err.println("Saving Requirement " + requirement.getId());
+        EntityTransaction t = dao.getAndBeginTransaction();
+        dao.merge(requirement);
+        t.commit();
         if (index > 0) {
             index--;
-            requirement = requirementCollection.getRequirements().get(index);
-        }
+        }        
     }
     
 
@@ -73,5 +73,8 @@ public class RequirementController implements Serializable{
         return (int) dao.getRequirementsCount();
     }
 
+    public List<Requirement> getAllRequirements() {
+        return dao.getAll();
+    }
 
 }
