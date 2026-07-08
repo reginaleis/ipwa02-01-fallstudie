@@ -13,14 +13,11 @@
     <ui:include src="/WEB-INF/includes/navbar.xhtml"/>
     <div class="page">
         <div class="panel-header">
-            <h1>Requirements Overview</h1>
+            <h1>Requirements</h1>
         </div>
     
         <div class="panel">
-            <h:button value="Add new Requirement" outcome="/editRequirement.xhtml" >
-                <!-- <f:param name="index" value="#{requirement.id}" /> -->
-            </h:button>
-            <h:dataTable class="data-table" var="requirement" value="#{requirementCollection.requirements}" >
+            <h:dataTable class="data-table" var="requirement" value="#{requirementController.getAllRequirements()}" >
                     <h:column>
                         <f:facet name="header">ID</f:facet>
                         <h:outputText value="#{requirement.id}" />
@@ -40,7 +37,12 @@
                     <h:column>
                         <f:facet name="header">Type</f:facet>
                         <h:outputText value="#{requirement.type}" />
-                    </h:column>    
+                    </h:column> 
+                    <h:column>
+                        <h:button value="Edit" outcome="/editRequirement.xhtml" >
+                            <f:param name="index" value="#{requirement.id}" />
+                        </h:button>
+                    </h:column>
             </h:dataTable>
         </div>
     </div>
