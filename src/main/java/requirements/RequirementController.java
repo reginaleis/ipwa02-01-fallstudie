@@ -25,7 +25,13 @@ public class RequirementController implements Serializable{
 
     public void setIndex(int id)
     {
-        this.index = id -1; 
+        this.index = id; 
+    }
+
+
+    public int getMaxIndex()
+    {
+        return (int) dao.getRequirementsCount();
     }
 
     public Requirement getRequirement()
@@ -62,17 +68,13 @@ public class RequirementController implements Serializable{
             index--;
         }        
     }
-    
+
 
     public void removeRequirement() {
         if(dao.getRequirementsCount()>0)
             dao.removeRequirement(requirement);
     }
 
-    public int getMaxIndex()
-    {
-        return (int) dao.getRequirementsCount();
-    }
 
     public List<Requirement> getAllRequirements() {
         return dao.getAll();
