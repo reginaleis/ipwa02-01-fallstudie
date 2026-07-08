@@ -24,6 +24,7 @@
                     <h:commandLink value="zurück" action="#{requirementController.previous()}"
                                     rendered="#{requirementController.index > 0}"/>
                     <h:outputText value=""/>
+                    <h:outputText rendered="#{requirementController.index == 0}" value=" "/>
                     <h:commandLink value="vor" action="#{requirementController.next()}"/>
 
 
