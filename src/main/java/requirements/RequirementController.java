@@ -33,13 +33,14 @@ public class RequirementController implements Serializable{
         return requirement = dao.getRequirementAtIndex(index);
     }
 
-    public void saveCurrent() {
+    public String saveCurrent() {
         Requirement current = getRequirement();
         if (current == null) {
-            return;
+            return "requirements";
         }
         dao.merge(current);
         dao.getAll();
+        return "requirements";
     }
  
     public void next() {
