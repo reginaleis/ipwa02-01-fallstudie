@@ -1,23 +1,29 @@
 package testcases;
 import java.util.List;
 
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Named;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-@Named
-@RequestScoped
 
+@Entity
+@Table(name="Testcases")
 public class Testcase {
     
+    @Id
     private Long id;
     private String tester;
     private String description;
-    private List<String> testSteps;
-    private List<String> expectedResult;
+    private String testSteps;
+    private String expectedResult;
     private String lastTestResult;
-    private List<String> testedRequirements;
+    // private String testedRequirements;
 
-    public Testcase(int id, String tester, String description, List<String> testSteps, List<String> expectedResult, String lastTestResult)
+    public Testcase() {
+
+    }
+
+    public Testcase(int id, String tester, String description, String testSteps, String expectedResult, String lastTestResult)
     {
         this.id = (long) id;
         this.tester = tester;
@@ -25,7 +31,7 @@ public class Testcase {
         this.testSteps = testSteps;
         this.expectedResult = expectedResult;
         this.lastTestResult = lastTestResult;
-        this.testedRequirements = null;
+        // this.testedRequirements = null;
     }
 
     public Long getId()
@@ -58,22 +64,22 @@ public class Testcase {
         this.description = description;
     }
 
-    public List<String> getTestSteps()
+    public String getTestSteps()
     {
         return testSteps;
     }
 
-    public void setTestSteps(List<String> testSteps)
+    public void setTestSteps(String testSteps)
     {
         this.testSteps = testSteps;
     }
 
-    public List<String> getExpectedResult()
+    public String getExpectedResult()
     {
         return expectedResult;
     }
 
-    public void setExpectedResult(List<String> expectedResult)
+    public void setExpectedResult(String expectedResult)
     {
         this.expectedResult = expectedResult;
     }
@@ -88,14 +94,14 @@ public class Testcase {
         this.lastTestResult = lastTestResult;
     }
 
-    public List<String> getTestedRequirements()
-    {
-        return testedRequirements;
-    }
+    // public String getTestedRequirements()
+    // {
+    //     return testedRequirements;
+    // }
 
-    public void setTestedRequirements(List<String> testedRequirements)
-    {
-        this.testedRequirements = testedRequirements;
-    }
+    // public void setTestedRequirements(String testedRequirements)
+    // {
+    //     this.testedRequirements = testedRequirements;
+    // }
 
 }
