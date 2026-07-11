@@ -15,7 +15,8 @@
    <div class="page">
         <div class="panel-header">
             <h1>Require4Testing</h1>
-        </div>
+          </div>
+        <p>Get an Overview of the current status and coverage.</p>
   
         <div class="panel">
           <h:outputText value="Number of Requirements: #{requirementController.getAllRequirements().size()}" />
@@ -26,7 +27,8 @@
 
         <div class="panel-header">
             <h1>Upcoming Tests</h1>
-        </div>
+          </div>
+        <p> Find out which Test executions are planned. Executions can be planned inside of a Test.</p>
         <div class="panel">
           <p:schedule value="#{scheduleBean.model}"/>
         </div>

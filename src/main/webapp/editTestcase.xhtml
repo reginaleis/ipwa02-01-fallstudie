@@ -16,8 +16,9 @@
     <div class="page">
         <div class="panel-header">
             <h1>Edit Testcase</h1>
-            <h:button value="GO BACK" outcome="/testcases.xhtml" />
+            <h:button value="CANCEL" outcome="/testcases.xhtml" />
         </div>
+        <p>Update the values as desired and click 'SAVE'! Use 'CANCEL' to go back without saving, your changes will be lost.</p>
         
         <div class="panel">
             <h:form>
@@ -52,7 +53,7 @@
                     <h:outputLabel value="Tested Requirement:" for="testedRequirement"/>
                     <h:selectOneMenu id="testedRequirement" value="#{testcaseController.testcase.testedRequirement}" converter="requirementConverter">
                         <f:selectItem itemLabel="-- none --" itemValue="#{null}" noSelectionOption="true" />
-                        <f:selectItems value="#{requirementController.allRequirements}" var="requirement" itemLabel="#{requirement.id}" itemValue="#{requirement}" />
+                        <f:selectItems value="#{requirementController.allRequirements}" var="requirement" itemLabel="#{requirement.id} - #{requirement.content}" itemValue="#{requirement}" />
                     </h:selectOneMenu>  
                     <h:message for="testedRequirement" styleClass="error"/> 
 
