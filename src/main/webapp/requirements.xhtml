@@ -41,6 +41,16 @@
                         <h:outputText value="#{requirement.type}" />
                     </h:column> 
                     <h:column>
+                        <f:facet name="header">Linked Testcases</f:facet>
+                        <ui:repeat value="#{requirementController.requirement.linkedTestcases}"
+                        var="testcase"/>
+                        <div>
+                            <h:outputText value="#{testcase.id}"/>
+                            <h:outputText value="#{testcase.description}"/>
+                            <hr/>
+                        </div>
+                    </h:column> 
+                    <h:column>
                         <h:button value="Edit" outcome="/editRequirement.xhtml" >
                             <f:param name="index" value="#{requirement.id}" />
                         </h:button>

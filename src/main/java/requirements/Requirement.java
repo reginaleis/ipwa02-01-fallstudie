@@ -1,8 +1,15 @@
 package requirements;
+import testcases.Testcase;
+
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,7 +23,12 @@ public class Requirement implements Serializable
 
     private String content;
 
-    // private List<String> linkedTestcases;
+    @OneToMany
+    @JoinTable(
+        name = "Requirements_Testcases",
+        joinColumns = @JoinColumn(name = "requirement_id"),
+        inverseJoinColumns = @JoinColumn(name = "testcase_id"))
+    private Set<Testcase> linkedTestcases;
 
     private String status;
     
@@ -31,7 +43,7 @@ public class Requirement implements Serializable
         this.id = (long) id;
         this.author = author;
         this.content = content;
-        // this.linkedTestcases = linkedTestcases;
+        this.linkedTestcases = null;
         this.status = status;
         this.type = type;
     }
@@ -66,15 +78,15 @@ public class Requirement implements Serializable
         this.content = content;
     }
 
-    // public List<String> getLinkedTestcases()
-    // {
-    //     return linkedTestcases;
-    // }
+    public Set<Testcase> getLinkedTestcases()
+    {
+        return linkedTestcases;
+    }
 
-    // public void setLinkedTestcases(List<String> linkedTestcases)
-    // {
-    //     this.linkedTestcases = linkedTestcases;
-    // }
+    public void setLinkedTestcases(Set<Testcase> linkedTestcases)
+    {
+        this.linkedTestcases = linkedTestcases;
+    }
 
     public String getStatus()
     {

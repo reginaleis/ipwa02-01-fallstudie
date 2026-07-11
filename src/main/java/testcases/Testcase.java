@@ -1,29 +1,46 @@
 package testcases;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.JoinColumn;
+import requirements.Requirement;
 
 
 @Entity
-@Table(name="Testcases")
+@Table(name="Testcases") 
 public class Testcase {
     
     @Id
     private Long id;
+
     private String tester;
+
     private String description;
+
     private String testSteps;
+
     private String expectedResult;
+
     private String lastTestResult;
-    // private String testedRequirements;
+
+    @ManyToOne
+    @JoinTable(
+        name = "Requirements_Testcases",
+        joinColumns = @JoinColumn(name = "testcase_id"),
+        inverseJoinColumns = @JoinColumn(name = "requirement_id"))
+    private Requirement testedRequirement;
 
     public Testcase() {
 
     }
 
-    public Testcase(int id, String tester, String description, String testSteps, String expectedResult, String lastTestResult)
+    public Testcase(int id, String tester, String description, String testSteps, String expectedResult, String lastTestResult, Requirement testedRequirement)
     {
         this.id = (long) id;
         this.tester = tester;
@@ -31,7 +48,7 @@ public class Testcase {
         this.testSteps = testSteps;
         this.expectedResult = expectedResult;
         this.lastTestResult = lastTestResult;
-        // this.testedRequirements = null;
+        this.testedRequirement = testedRequirement;
     }
 
     public Long getId()
@@ -94,14 +111,14 @@ public class Testcase {
         this.lastTestResult = lastTestResult;
     }
 
-    // public String getTestedRequirements()
-    // {
-    //     return testedRequirements;
-    // }
+    public Requirement getTestedRequirement()
+    {
+        return testedRequirement;
+    }
 
-    // public void setTestedRequirements(String testedRequirements)
-    // {
-    //     this.testedRequirements = testedRequirements;
-    // }
+    public void setTestedRequirement(Requirement testedRequirement)
+    {
+        this.testedRequirement = testedRequirement;
+    }
 
 }
