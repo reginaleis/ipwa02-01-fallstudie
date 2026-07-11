@@ -5,6 +5,7 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>requirements.Requirement</class>
         <class>testcases.Testcase</class>
+        <class>testplan.Testplan</class>
 
         <properties>
             <!-- Database connection settings -->

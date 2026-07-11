@@ -12,6 +12,7 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import requirements.Requirement;
 import testcases.Testcase;
+import testplan.Testplan;
 
 @Named
 @ApplicationScoped
@@ -191,6 +192,21 @@ public class ApplicationDAO {
             }
             throw e;
         }
+    }
+
+// TESTPLAN
+
+    public List<Testplan> getAllTestplans() {
+        
+        CriteriaQuery<Testplan> cq = cb.createQuery(Testplan.class);
+        Root<Testplan> root = cq.from(Testplan.class);
+        cq.select(root).orderBy(cb.asc(root.get("id")));
+        return em.createQuery(cq).getResultList();
+        
+    }
+
+    public Testplan getTestplanById(Long id) {
+        return em.find(Testplan.class, id);
     }
 
 // MAIN

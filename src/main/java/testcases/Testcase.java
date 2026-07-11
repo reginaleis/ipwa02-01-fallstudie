@@ -1,15 +1,12 @@
 package testcases;
-import java.util.List;
-import java.util.Set;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.JoinColumn;
 import requirements.Requirement;
 
 
@@ -37,7 +34,7 @@ public class Testcase {
         inverseJoinColumns = @JoinColumn(name = "requirement_id"))
     private Requirement testedRequirement;
 
-    private Date nextExecutionDate; // TODO: Auto set this from Testplan
+    private LocalDateTime nextExecutionDate; // TODO: Auto set this from Testplan
 
     public Testcase() {
 
@@ -52,11 +49,11 @@ public class Testcase {
         this.expectedResult = expectedResult;
         this.lastTestResult = lastTestResult;
         this.testedRequirement = testedRequirement;
-        this.nextExecutionDate = new Date(0);
+        this.nextExecutionDate = LocalDateTime.MIN;
     }
 
 
-    public Testcase(int id, String tester, String description, String testSteps, String expectedResult, String lastTestResult, Requirement testedRequirement, Date nextExecutionDate)
+    public Testcase(int id, String tester, String description, String testSteps, String expectedResult, String lastTestResult, Requirement testedRequirement, LocalDateTime nextExecutionDate)
     {
         this.id = (long) id;
         this.tester = tester;
@@ -138,12 +135,12 @@ public class Testcase {
         this.testedRequirement = testedRequirement;
     }
 
-    public Date getNextExecutionDate()
+    public LocalDateTime getNextExecutionDate()
     {
         return nextExecutionDate;
     }
 
-    public void setNextExecutionDate(Date nextExecutionDate)
+    public void setNextExecutionDate(LocalDateTime nextExecutionDate)
     {
         this.nextExecutionDate = nextExecutionDate;
     }

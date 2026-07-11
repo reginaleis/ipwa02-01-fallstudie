@@ -1,5 +1,5 @@
 package testplan;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -16,7 +16,7 @@ public class Testplan {
     @Id
     private Long id;
 
-    private LocalDate plannedDate;
+    private LocalDateTime plannedDate;
 
     @OneToOne
     @JoinColumn(name = "testcase_id", unique=true)
@@ -24,7 +24,7 @@ public class Testplan {
 
     public Testplan(){}
 
-    public Testplan(int id, LocalDate plannedDate, Testcase testcase)
+    public Testplan(int id, LocalDateTime plannedDate, Testcase testcase)
     {
         this.id = (long) id;
         this.plannedDate = plannedDate;
@@ -41,12 +41,12 @@ public class Testplan {
         this.id = id;
     }
 
-    public LocalDate getPlannedDate()
+    public LocalDateTime getPlannedDate()
     {
         return plannedDate;
     }
 
-    public void setPlannedDate(LocalDate plannedDate)
+    public void setPlannedDate(LocalDateTime plannedDate)
     {
         this.plannedDate = plannedDate;
     }
