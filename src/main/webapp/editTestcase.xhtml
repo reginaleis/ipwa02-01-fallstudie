@@ -65,10 +65,10 @@
                     <h:outputText value=""/>
 
                     <h:outputLabel value="Next Test Execution:" for="nextExecutionDate"/>
-                    <p:calendar
+                    <p:datePicker
                         id="nextExecutionEdit"
                         value="#{testcaseController.testcase.nextExecutionDate}" pattern="dd.MM.yyyy">
-                    </p:calendar> 
+                    </p:datePicker> 
                     <h:outputText value=""/>
                 </h:panelGrid>
                 <h:button value="CANCEL" outcome="/testcases.xhtml" />
