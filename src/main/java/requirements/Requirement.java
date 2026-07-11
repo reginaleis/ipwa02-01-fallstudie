@@ -2,8 +2,10 @@ package requirements;
 import testcases.Testcase;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.HashSet;
+import java.util.Comparator;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -76,6 +78,16 @@ public class Requirement implements Serializable
     public Set<Testcase> getLinkedTestcases()
     {
         return linkedTestcases;
+    }
+
+    public List<Testcase> getLinkedTestcasesSorted()
+    {
+        List<Testcase> sortedLinkedTestcases = new ArrayList<>();
+        if (linkedTestcases != null) {
+            sortedLinkedTestcases.addAll(linkedTestcases);
+            sortedLinkedTestcases.sort(Comparator.comparing(Testcase::getId, Comparator.nullsLast(Comparator.naturalOrder())));
+        }
+        return sortedLinkedTestcases;
     }
 
     public void setLinkedTestcases(Set<Testcase> linkedTestcases)

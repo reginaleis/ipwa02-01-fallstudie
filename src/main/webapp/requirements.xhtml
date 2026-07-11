@@ -47,7 +47,7 @@
                         <ui:fragment rendered="#{empty requirement.linkedTestcases}">
                             <h:outputText value="--" />
                         </ui:fragment>
-                        <ui:repeat value="#{requirement.linkedTestcases}" var="testcase">
+                        <ui:repeat value="#{requirement.linkedTestcasesSorted}" var="testcase">
                             <h:outputText value="#{testcase.id}: #{testcase.description}"/>
                             <br/>
                         </ui:repeat>
