@@ -20,13 +20,13 @@ public class Testcase {
     @Id
     private Long id;
 
-    private String tester;
+    private String tester; // TODO: link to User entity
 
     private String description;
 
-    private String testSteps;
+    private String testSteps; // TODO: change to List<String> and convert for persistence
 
-    private String expectedResult;
+    private String expectedResult; // TODO: change to List<String> and convert for persistence
 
     private String lastTestResult; // TODO: change to enum
 
@@ -37,7 +37,7 @@ public class Testcase {
         inverseJoinColumns = @JoinColumn(name = "requirement_id"))
     private Requirement testedRequirement;
 
-    private Date nextExecutionDate;
+    private Date nextExecutionDate; // TODO: Auto set this from Testplan
 
     public Testcase() {
 

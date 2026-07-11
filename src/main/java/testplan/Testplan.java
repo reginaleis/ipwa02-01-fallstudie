@@ -32,7 +32,7 @@ public class Testplan {
         name = "Testplans_Testcases",
         joinColumns = @JoinColumn(name = "testplan_id"),
         inverseJoinColumns = @JoinColumn(name = "testcase_id"))
-    private Set<Testcase> testcases;
+    private Set<Testcase> testcases; // TODO : use a TestSuite here instead
 
     public Testplan(int id, String user, LocalDateTime startTime, String testbench, Duration estimatedDuration, String result)
     {

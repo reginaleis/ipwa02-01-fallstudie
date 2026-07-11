@@ -20,16 +20,16 @@ public class Requirement implements Serializable
     @Id
     private Long id;
 
-    private String author;
+    private String author; // TODO: link to User entity
 
     private String content;
 
     @OneToMany(mappedBy = "testedRequirement")
     private Set<Testcase> linkedTestcases;
 
-    private String status;
+    private String status; // TODO: change to enum
     
-    private String type;
+    private String type; // TODO: change to enum
 
     public Requirement() {
 
