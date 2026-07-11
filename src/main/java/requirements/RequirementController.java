@@ -45,7 +45,7 @@ public class RequirementController implements Serializable{
     public Requirement getRequirement()
     {
         if (requirement == null) {
-            requirement = dao.getRequirementAtIndex(index);
+            requirement = dao.getRequirementById((long) index);
         }
         return requirement;
     }

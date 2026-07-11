@@ -47,7 +47,7 @@ public class TestcaseController implements Serializable{
     public Testcase getTestcase()
     {
         if (testcase == null) {
-            testcase = dao.getTestcaseAtIndex(index);
+            testcase = dao.getTestcaseById((long) index);
         }
         return testcase;
     }

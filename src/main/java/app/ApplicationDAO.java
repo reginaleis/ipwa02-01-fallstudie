@@ -99,6 +99,9 @@ public class ApplicationDAO {
             .getSingleResult();
         }
 
+    public Testcase getTestcaseById(Long id) {
+        return em.find(Testcase.class, id);
+    }
 
     public void removeTestcase(Testcase req) {
         // TODO: use createCriteriaDelete
