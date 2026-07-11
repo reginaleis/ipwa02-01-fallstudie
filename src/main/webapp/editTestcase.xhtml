@@ -63,6 +63,13 @@
                         <f:selectItem itemLabel="Broken" itemValue="Broken" />
                     </h:selectOneMenu>  
                     <h:outputText value=""/>
+
+                    <h:outputLabel value="Next Test Execution:" for="nextExecutionDate"/>
+                    <p:calendar
+                        id="upcomingExecution"
+                        value="#{testcaseController.testcase.nextExecutionDate}">
+                    </p:calendar> 
+                    <h:outputText value=""/>
                 </h:panelGrid>
                 <h:button value="CANCEL" outcome="/testcases.xhtml" />
                 <h:commandButton value="SAVE" action="#{testcaseController.saveCurrent}" />
