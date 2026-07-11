@@ -1,49 +1,38 @@
 package app;
 
 import java.io.Serializable;
-import java.util.List;
 
 import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleModel;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import testplan.Testplan;
+import testcases.Testcase;
 
 
 @Named
-@ApplicationScoped
+@RequestScoped
 public class ScheduleBean implements Serializable {
 
     @Inject
     private ApplicationDAO dao;
 
-    private ScheduleModel model;
+    public ScheduleModel getModel() {
+        ScheduleModel model = new DefaultScheduleModel();
 
-    @PostConstruct
-    public void init() {
-        model = new DefaultScheduleModel();
-
-        List<Testplan> plans = dao.getAllTestplans();
-        for (Testplan plan : plans) {
-            if (plan.getPlannedDate() == null || plan.getTestcase() == null) {
+        for (Testcase testcase : dao.getAllTestcases()) {
+            if (testcase.getNextExecutionDate() == null) {
                 continue;
             }
-
-            String title = plan.getTestcase().getId() + ": " + plan.getTestcase().getDescription();
-
             model.addEvent(DefaultScheduleEvent.builder()
-                    .title(title)
-                    .startDate(plan.getPlannedDate())
+                    .title(testcase.getDescription())
+                    .startDate(testcase.getNextExecutionDate())
                     .allDay(true)
                     .build());
         }
-    }
 
-    public ScheduleModel getModel() {
         return model;
     }
 }
