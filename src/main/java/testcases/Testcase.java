@@ -1,6 +1,7 @@
 package testcases;
 import java.util.List;
 import java.util.Set;
+import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -36,6 +37,8 @@ public class Testcase {
         inverseJoinColumns = @JoinColumn(name = "requirement_id"))
     private Requirement testedRequirement;
 
+    private Date nextExecutionDate;
+
     public Testcase() {
 
     }
@@ -49,6 +52,20 @@ public class Testcase {
         this.expectedResult = expectedResult;
         this.lastTestResult = lastTestResult;
         this.testedRequirement = testedRequirement;
+        this.nextExecutionDate = new Date(0);
+    }
+
+
+    public Testcase(int id, String tester, String description, String testSteps, String expectedResult, String lastTestResult, Requirement testedRequirement, Date nextExecutionDate)
+    {
+        this.id = (long) id;
+        this.tester = tester;
+        this.description = description;
+        this.testSteps = testSteps;
+        this.expectedResult = expectedResult;
+        this.lastTestResult = lastTestResult;
+        this.testedRequirement = testedRequirement;
+        this.nextExecutionDate = nextExecutionDate;
     }
 
     public Long getId()
@@ -119,6 +136,16 @@ public class Testcase {
     public void setTestedRequirement(Requirement testedRequirement)
     {
         this.testedRequirement = testedRequirement;
+    }
+
+    public Date getNextExecutionDate()
+    {
+        return nextExecutionDate;
+    }
+
+    public void setNextExecutionDate(Date nextExecutionDate)
+    {
+        this.nextExecutionDate = nextExecutionDate;
     }
 
 }
