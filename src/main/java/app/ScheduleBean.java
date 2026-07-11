@@ -29,7 +29,7 @@ public class ScheduleBean implements Serializable {
             model.addEvent(DefaultScheduleEvent.builder()
                     .title(testcase.getDescription())
                     .startDate(testcase.getNextExecutionDate())
-                    .allDay(true)
+                    .allDay(false)
                     .build());
         }
 
