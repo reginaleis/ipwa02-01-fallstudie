@@ -144,6 +144,10 @@ public class ApplicationDAO {
             .getSingleResult();
     }
 
+    public Requirement getRequirementById(Long id) {
+        return em.find(Requirement.class, id);
+    }
+
     public void removeRequirement(Requirement req) {
         // TODO: use createCriteriaDelete
     }
