@@ -1,5 +1,6 @@
 package testcases;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -143,6 +144,14 @@ public class Testcase {
     public void setNextExecutionDate(LocalDateTime nextExecutionDate)
     {
         this.nextExecutionDate = nextExecutionDate;
+    }
+
+    public String getNextExecutionDateFormatted()
+    {
+        if (nextExecutionDate == null || nextExecutionDate.equals(LocalDateTime.MIN)) {
+            return "--";
+        }
+        return nextExecutionDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 
 }

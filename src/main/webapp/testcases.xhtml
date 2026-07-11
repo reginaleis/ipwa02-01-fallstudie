@@ -60,9 +60,7 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">next execution</f:facet>
-                    <h:outputText value="#{testcase.nextExecutionDate}">
-                        <f:convertDateTime  pattern="dd.MM.yyyy" />
-                    </h:outputText>
+                    <h:outputText value="#{testcase.nextExecutionDateFormatted}" />
                 </h:column>
                 <h:column>
                     <h:button value="Edit" outcome="/editTestcase.xhtml" >
