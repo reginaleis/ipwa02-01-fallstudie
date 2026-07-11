@@ -3,13 +3,12 @@ import testcases.Testcase;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,11 +22,7 @@ public class Requirement implements Serializable
 
     private String content;
 
-    @OneToMany
-    @JoinTable(
-        name = "Requirements_Testcases",
-        joinColumns = @JoinColumn(name = "requirement_id"),
-        inverseJoinColumns = @JoinColumn(name = "testcase_id"))
+    @OneToMany(mappedBy = "testedRequirement")
     private Set<Testcase> linkedTestcases;
 
     private String status;
@@ -43,7 +38,7 @@ public class Requirement implements Serializable
         this.id = (long) id;
         this.author = author;
         this.content = content;
-        this.linkedTestcases = null;
+        this.linkedTestcases = new HashSet<>();
         this.status = status;
         this.type = type;
     }
