@@ -12,12 +12,12 @@ public class User {
 
     private String firstName;
     private String lastName;
-    private Role role;
+    private List<Role> roles;
 
-    public User(String firstName, String lastName, Role role){
+    public User(String firstName, String lastName, List<Role> roles){
         this.firstName = firstName;
         this.lastName = lastName;
-        this.role = role;
+        this.roles = roles;
     }
 
     public void setFirstName(String name){
@@ -40,12 +40,12 @@ public class User {
         return firstName + " " + lastName;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
-    public Role getRole() {
-        return role;
+    public List<Role> getRoles() {
+        return roles;
     }
 
 }
