@@ -39,10 +39,15 @@
                     <f:facet name="header">expected result</f:facet>
                     <h:outputText value="#{testcase.expectedResult}" />
                 </h:column>
-                <!-- <h:column>
+                <h:column>
                     <f:facet name="header">tested requirement</f:facet>
-                    <h:outputText value="#{testcase.testedRequirements}" />
-                </h:column> -->
+                    <h:panelGroup rendered="#{not empty testcase.testedRequirement}">
+                        <h:outputText value="#{testcase.testedRequirement.id}: #{testcase.testedRequirement.content}" />
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{empty testcase.testedRequirement}">
+                        <h:outputText value="--" />
+                    </h:panelGroup>
+                </h:column>
                 <h:column>
                     <f:facet name="header">latest result</f:facet>
                     <h:outputText value="#{testcase.lastTestResult}" />

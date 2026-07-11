@@ -41,14 +41,16 @@
                         <h:outputText value="#{requirement.type}" />
                     </h:column> 
                     <h:column>
-                        <f:facet name="header">Linked Testcases</f:facet>
-                        <ui:repeat value="#{requirementController.requirement.linkedTestcases}"
-                        var="testcase"/>
-                        <div>
-                            <h:outputText value="#{testcase.id}"/>
-                            <h:outputText value="#{testcase.description}"/>
-                            <hr/>
-                        </div>
+                        <f:facet name="header">Linked Testcases
+                            (Set in Testcase)
+                        </f:facet>
+                        <ui:fragment rendered="#{empty requirement.linkedTestcases}">
+                            <h:outputText value="--" />
+                        </ui:fragment>
+                        <ui:repeat value="#{requirement.linkedTestcases}" var="testcase">
+                            <h:outputText value="#{testcase.id}: #{testcase.description}"/>
+                            <br/>
+                        </ui:repeat>
                     </h:column> 
                     <h:column>
                         <h:button value="Edit" outcome="/editRequirement.xhtml" >
