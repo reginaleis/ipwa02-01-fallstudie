@@ -18,6 +18,11 @@
         
         <div class="panel">
             <h:button value="Add new Testcase" outcome="/addTestcase.xhtml" />
+            Filter View:
+            <h:selectOneMenu id="filterTester" value="#{testcaseController.testcase.tester}">
+                <f:selectItem itemLabel="All" itemValue="#{null}" noSelectionOption="true" />
+                <f:selectItems value="#{testcaseController.getAllTesters()}" var="tester" itemLabel="#{tester}" itemValue="#{tester}" />
+            </h:selectOneMenu>  
             <h:dataTable class="data-table" var="testcase" value="#{testcaseController.getAllTestcases()}" >
                 <h:column>
                     <f:facet name="header">ID</f:facet>

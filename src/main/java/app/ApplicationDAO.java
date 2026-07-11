@@ -107,6 +107,12 @@ public class ApplicationDAO {
         // TODO: use createCriteriaDelete
     }
 
+    public List<String> getAllTesters() {
+        CriteriaQuery<String> cq = cb.createQuery(String.class);
+        Root<Testcase> root = cq.from(Testcase.class);
+        cq.select(root.get("tester")).distinct(true).orderBy(cb.asc(root.get("tester")));
+        return em.createQuery(cq).getResultList();
+    }
 
 // REQUIREMENT DAO
 

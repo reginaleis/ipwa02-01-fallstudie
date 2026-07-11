@@ -100,4 +100,8 @@ public class TestcaseController implements Serializable{
         return dao.getAllTestcases();
     }
 
+    public List<String> getAllTesters() {
+        return dao.getAllTesters();
+    }
+
 }
