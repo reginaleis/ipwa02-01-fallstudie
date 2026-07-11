@@ -66,8 +66,8 @@
 
                     <h:outputLabel value="Next Test Execution:" for="nextExecutionDate"/>
                     <p:calendar
-                        id="upcomingExecution"
-                        value="#{testcaseController.testcase.nextExecutionDate}">
+                        id="nextExecutionEdit"
+                        value="#{testcaseController.testcase.nextExecutionDate}" pattern="dd.MM.yyyy">
                     </p:calendar> 
                     <h:outputText value=""/>
                 </h:panelGrid>

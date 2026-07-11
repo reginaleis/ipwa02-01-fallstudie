@@ -60,11 +60,11 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">next execution</f:facet>
-                    <p:calendar value="#{testcase.nextExecutionDate}"/> 
+                    <p:calendar id="nextExecution" value="#{testcase.nextExecutionDate}" pattern="dd.MM.yyyy"/> 
                 </h:column>
                 <h:column>
                     <h:button value="Edit" outcome="/editTestcase.xhtml" >
-                        <f:param name="index" value="#{testcase.id}" />
+                        <f:param name="index" value="#{testcase.id}"  />
                     </h:button>
                 </h:column>
             </h:dataTable>
