@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+  <link rel="stylesheet" href="css/style.css"/>
+    <title>Add New</title>
+</h:head>
+
+<body>
+    <f:metadata>
+        <f:viewAction action="#{testcaseController.setNextIndex()}" onPostback="false" />
+    </f:metadata>
+    <div class="page">
+        <div class="panel-header">
+            <h1>Add a new Testcase</h1>
+        </div>
+        
+        <div class="panel">
+            <h:form>
+                <h:panelGrid columns="3" >
+
+                    <h:outputLabel value="ID:" for="id"/>
+                    <h:outputText id="id" value="#{testcaseController.index}"/>
+                    <h:outputText value=""/>
+
+                    <h:outputLabel value="Description:" for="description"/>
+                    <h:inputText id="description" value="#{testcaseController.testcase.description}" size="40" required="true"/>
+                    <h:message for="description" styleClass="error"/>
+
+                    <h:outputLabel value="Tester:" for="tester"/>
+                    <h:inputText id="tester" value="#{testcaseController.testcase.tester}" size="40" required="true"/>
+                    <h:outputText value=""/>
+
+                    <h:outputLabel value="Test Steps:" for="testSteps"/>
+                    <h:inputText id="testSteps" value="#{testcaseController.testcase.testSteps}" size="40" required="true"/>
+                    <h:outputText value=""/>
+
+                    <h:outputLabel value="Expected Result:" for="expectedResult"/>
+                    <h:inputText id="expectedResult" value="#{testcaseController.testcase.expectedResult}" size="40" required="true"/>
+                    <h:outputText value=""/>
+
+                    <h:outputLabel value="Tested Requirement:" for="testedRequirement"/>
+                    <h:selectOneMenu value = "#{testcaseController.testcase.testedRequirement}">
+                        <f:selectItem itemLabel="0" itemValue="0" />
+                        <f:selectItem itemLabel="1" itemValue="1" />
+                        <f:selectItem itemLabel="2" itemValue="2" />
+                        <f:selectItem itemLabel="3" itemValue="3" />
+                    </h:selectOneMenu>  
+                    <h:outputText value=""/> 
+
+                    <h:outputLabel value="Last Test Result:" for="lastTestResult"/>
+                    <h:selectOneMenu value = "#{testcaseController.testcase.lastTestResult}">
+                        <f:selectItem itemLabel="Passed" itemValue="Passed" />
+                        <f:selectItem itemLabel="Failed" itemValue="Failed" />
+                        <f:selectItem itemLabel="Skipped" itemValue="Skipped" />
+                        <f:selectItem itemLabel="Broken" itemValue="Broken" />
+                    </h:selectOneMenu>  
+                    <h:outputText value=""/>
+                </h:panelGrid>
+                <h:button value="CANCEL" outcome="/testcases.xhtml" />
+                <h:commandButton value="SAVE" action="#{testcaseController.addTestcase}" />
+            </h:form>
+        </div>
+    </div>
+</body>
+</html>

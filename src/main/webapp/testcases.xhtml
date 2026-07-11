@@ -17,6 +17,7 @@
         </div>
         
         <div class="panel">
+            <h:button value="Add new Testcase" outcome="/addTestcase.xhtml" />
             <h:dataTable class="data-table" var="testcase" value="#{testcaseController.getAllTestcases()}" >
                 <h:column>
                     <f:facet name="header">ID</f:facet>
@@ -39,12 +40,17 @@
                     <h:outputText value="#{testcase.expectedResult}" />
                 </h:column>
                 <!-- <h:column>
-                    <f:facet name="header">tested requirements</f:facet>
+                    <f:facet name="header">tested requirement</f:facet>
                     <h:outputText value="#{testcase.testedRequirements}" />
                 </h:column> -->
                 <h:column>
                     <f:facet name="header">latest result</f:facet>
                     <h:outputText value="#{testcase.lastTestResult}" />
+                </h:column>
+                <h:column>
+                    <h:button value="Edit" outcome="/editTestcase.xhtml" >
+                        <f:param name="index" value="#{testcase.id}" />
+                    </h:button>
                 </h:column>
             </h:dataTable>
             
