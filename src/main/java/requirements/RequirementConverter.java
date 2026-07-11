@@ -2,17 +2,17 @@ package requirements;
 
 import app.ApplicationDAO;
 
+import jakarta.enterprise.inject.spi.CDI;
 import jakarta.faces.convert.Converter;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.convert.FacesConverter;
-import jakarta.inject.Inject;
-import requirements.Requirement;
 import jakarta.faces.component.UIComponent;
 
 @FacesConverter(value = "requirementConverter", managed = true)
 public class RequirementConverter implements Converter<Requirement> {
-    @Inject
-    private ApplicationDAO dao;
+    private ApplicationDAO getDao() {
+        return CDI.current().select(ApplicationDAO.class).get();
+    }
 
     @Override
     public Requirement getAsObject(FacesContext context, UIComponent component, String value) {
@@ -20,7 +20,7 @@ public class RequirementConverter implements Converter<Requirement> {
             return null;
         }
         Long id = Long.valueOf(value);
-        return dao.getRequirementById(id);
+        return getDao().getRequirementById(id);
     }
     
     @Override
