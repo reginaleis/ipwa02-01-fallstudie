@@ -1,19 +1,21 @@
 package testcases;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityTransaction;
+import app.ApplicationDAO;
 
 @Named
 @ViewScoped
 public class TestcaseController implements Serializable{
 
     @Inject
-    private TestcaseDAO dao ;
+    private ApplicationDAO dao ;
 
     private int index = 0;
     Testcase testcase;
@@ -56,7 +58,7 @@ public class TestcaseController implements Serializable{
             return "testcases";
         }
         dao.merge(current);
-        dao.getAll();
+        dao.getAllTestcases();
         return "testcases";
     }
  
@@ -89,7 +91,7 @@ public class TestcaseController implements Serializable{
         if (testcase.getId() == null) {
             testcase.setId((long) index);
         }
-        dao.addTestcase(testcase);
+        dao.persist(testcase);
         return "testcases";
     }
 
@@ -100,7 +102,7 @@ public class TestcaseController implements Serializable{
 
 
     public List<Testcase> getAllTestcases() {
-        return dao.getAll();
+        return dao.getAllTestcases();
     }
 
 }

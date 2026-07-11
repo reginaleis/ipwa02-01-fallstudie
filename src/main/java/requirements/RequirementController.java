@@ -7,13 +7,14 @@ import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityTransaction;
+import app.ApplicationDAO;
 
 @Named
 @ViewScoped
 public class RequirementController implements Serializable{
 
     @Inject
-    private RequirementDAO dao ;
+    private ApplicationDAO dao ;
 
     private int index = 0;
     Requirement requirement;
@@ -27,7 +28,6 @@ public class RequirementController implements Serializable{
     {
         this.index = id; 
     }
-
     
     public int getMaxIndex()
     {
@@ -56,7 +56,7 @@ public class RequirementController implements Serializable{
             return "requirements";
         }
         dao.merge(current);
-        dao.getAll();
+        dao.getAllRequirements();
         return "requirements";
     }
  
@@ -89,7 +89,7 @@ public class RequirementController implements Serializable{
         if (requirement.getId() == null) {
             requirement.setId((long) index);
         }
-        dao.addRequirement(requirement);
+        dao.persist(requirement);
         return "requirements";
     }
 
@@ -100,7 +100,8 @@ public class RequirementController implements Serializable{
 
 
     public List<Requirement> getAllRequirements() {
-        return dao.getAll();
+        return dao.getAllRequirements();
     }
+
 
 }
