@@ -1,7 +1,6 @@
 package testcases;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.faces.view.ViewScoped;
@@ -55,18 +54,16 @@ public class TestcaseController implements Serializable{
     public String saveCurrent() {
         Testcase current = getTestcase();
         if (current == null) {
-            return "testcases";
+            return "testcases?faces-redirect=true";
         }
-        dao.merge(current);
+        dao.linkTestcaseRequirement(current, current.getTestedRequirement());
         dao.getAllTestcases();
-        return "testcases";
+        return "testcases?faces-redirect=true";
     }
  
     public void next() {
         System.err.println("Saving testcase " + testcase.getId());
-        EntityTransaction t = dao.getAndBeginTransaction();
-        dao.merge(testcase);
-        t.commit();
+        dao.linkTestcaseRequirement(testcase, testcase.getTestedRequirement());
         if (index > 0) {
             index++;
         }
@@ -75,9 +72,7 @@ public class TestcaseController implements Serializable{
 
     public void previous() {
         System.err.println("Saving Testcase " + testcase.getId());
-        EntityTransaction t = dao.getAndBeginTransaction();
-        dao.merge(testcase);
-        t.commit();
+        dao.linkTestcaseRequirement(testcase, testcase.getTestedRequirement());
         if (index > 0) {
             index--;
         }        
@@ -91,8 +86,8 @@ public class TestcaseController implements Serializable{
         if (testcase.getId() == null) {
             testcase.setId((long) index);
         }
-        dao.persist(testcase);
-        return "testcases";
+        dao.linkTestcaseRequirement(testcase, testcase.getTestedRequirement());
+        return "testcases?faces-redirect=true";
     }
 
     public void removeTestcase() {
