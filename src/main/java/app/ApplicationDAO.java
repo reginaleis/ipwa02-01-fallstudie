@@ -60,6 +60,7 @@ public class ApplicationDAO {
         }
     }
 
+
 // TESTCASE DAO
 
     public List<Testcase> getAllTestcases() {
@@ -104,7 +105,7 @@ public class ApplicationDAO {
     }
 
     public void removeTestcase(Testcase req) {
-        // TODO: use createCriteriaDelete
+        // TODO: implement logic
     }
 
     public List<String> getAllTesters() {
@@ -158,7 +159,7 @@ public class ApplicationDAO {
     }
 
     public void removeRequirement(Requirement req) {
-        // TODO: use createCriteriaDelete
+        // TODO: implement logic
     }
 
 // Requirements - Testcases Relationshop

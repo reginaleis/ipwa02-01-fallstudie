@@ -27,7 +27,7 @@ public class Testcase {
 
     private String expectedResult;
 
-    private String lastTestResult;
+    private String lastTestResult; // TODO: change to enum
 
     @ManyToOne
     @JoinTable(
