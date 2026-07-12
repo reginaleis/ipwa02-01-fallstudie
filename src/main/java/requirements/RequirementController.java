@@ -3,11 +3,11 @@ package requirements;
 import java.io.Serializable;
 import java.util.List;
 
+import app.ApplicationDAO;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityTransaction;
-import app.ApplicationDAO;
 
 @Named
 @ViewScoped
@@ -42,14 +42,6 @@ public class RequirementController implements Serializable{
         }
     }
 
-    public Requirement getRequirement()
-    {
-        if (requirement == null) {
-            requirement = dao.getRequirementById((long) index);
-        }
-        return requirement;
-    }
-
     public String saveCurrent() {
         Requirement current = getRequirement();
         if (current == null) {
@@ -82,6 +74,14 @@ public class RequirementController implements Serializable{
         requirement = null;
     }
 
+    public Requirement getRequirement()
+    {
+        if (requirement == null) {
+            requirement = dao.getRequirementById((long) index);
+        }
+        return requirement;
+    }
+    
     public String addRequirement() {
         if (requirement == null) {
             requirement = new Requirement();

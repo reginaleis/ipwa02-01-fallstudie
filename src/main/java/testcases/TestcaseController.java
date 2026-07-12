@@ -3,11 +3,10 @@ package testcases;
 import java.io.Serializable;
 import java.util.List;
 
+import app.ApplicationDAO;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import jakarta.persistence.EntityTransaction;
-import app.ApplicationDAO;
 
 @Named
 @ViewScoped
@@ -43,14 +42,6 @@ public class TestcaseController implements Serializable{
         }
     }
 
-    public Testcase getTestcase()
-    {
-        if (testcase == null) {
-            testcase = dao.getTestcaseById((long) index);
-        }
-        return testcase;
-    }
-
     public String saveCurrent() {
         Testcase current = getTestcase();
         if (current == null) {
@@ -77,6 +68,14 @@ public class TestcaseController implements Serializable{
             index--;
         }        
         testcase = null;
+    }
+
+    public Testcase getTestcase()
+    {
+        if (testcase == null) {
+            testcase = dao.getTestcaseById((long) index);
+        }
+        return testcase;
     }
 
     public String addTestcase() {
