@@ -173,18 +173,11 @@ public class ApplicationDAO {
                 ? null
                 : em.find(Requirement.class, requirement.getId());
 
-            Testcase managedTestcase;
-            if (testcase.getId() != null && em.find(Testcase.class, testcase.getId()) != null) {
-                managedTestcase = em.merge(testcase);
-            } else {
-                managedTestcase = testcase;
-                em.persist(managedTestcase);
-            }
-
-            managedTestcase.setTestedRequirement(managedRequirement);
-            em.merge(managedTestcase);
+            testcase.setTestedRequirement(managedRequirement);
+            em.merge(testcase);
 
             tx.commit();
+            em.clear();
         } catch (RuntimeException e) {
             if (tx.isActive()) {
                 tx.rollback();

@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import requirements.Requirement;
@@ -29,10 +28,7 @@ public class Testcase {
     private String lastTestResult; // TODO: change to enum
 
     @ManyToOne
-    @JoinTable(
-        name = "Requirements_Testcases",
-        joinColumns = @JoinColumn(name = "testcase_id"),
-        inverseJoinColumns = @JoinColumn(name = "requirement_id"))
+    @JoinColumn(name = "testedRequirement_id")
     private Requirement testedRequirement;
 
     private LocalDateTime nextExecutionDate;
