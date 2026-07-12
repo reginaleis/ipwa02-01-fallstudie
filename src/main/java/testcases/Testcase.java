@@ -35,7 +35,7 @@ public class Testcase {
         inverseJoinColumns = @JoinColumn(name = "requirement_id"))
     private Requirement testedRequirement;
 
-    private LocalDateTime nextExecutionDate; // TODO: Auto set this from Testplan
+    private LocalDateTime nextExecutionDate;
 
     public Testcase() {
 
