@@ -150,4 +150,8 @@ public class Testcase {
         return nextExecutionDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 
+    public String getTestcaseName()
+    {
+        return "TC_" + id;
+    }
 }

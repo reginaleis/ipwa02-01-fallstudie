@@ -27,7 +27,7 @@ public class ScheduleBean implements Serializable {
                 continue;
             }
             model.addEvent(DefaultScheduleEvent.builder()
-                    .title(testcase.getDescription())
+                    .title(testcase.getTestcaseName())
                     .startDate(testcase.getNextExecutionDate())
                     .allDay(false)
                     .build());
