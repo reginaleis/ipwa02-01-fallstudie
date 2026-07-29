@@ -2,7 +2,7 @@ package app;
 
 import java.util.List;
 
-import jakarta.enterprise.context.SessionScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -14,7 +14,7 @@ import requirements.Requirement;
 import testcases.Testcase;
 
 @Named
-@SessionScoped
+@ApplicationScoped
 public class ApplicationDAO {
 
     EntityManager em;
